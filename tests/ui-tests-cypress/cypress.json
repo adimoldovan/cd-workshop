@@ -1,0 +1,9 @@
+{
+  "ignoreTestFiles": "examples/*",
+  "watchForFileChanges": false,
+  "defaultCommandTimeout": 20000,
+  "reporter": "mocha-multi-reporters",
+  "reporterOptions": {
+    "configFile": "reporter-config.json"
+  }
+}

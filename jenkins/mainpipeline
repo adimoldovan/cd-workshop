@@ -1,0 +1,44 @@
+
+node("master"){  
+try{
+  stage("Build"){
+      build job: 'BuildPipeline'  
+   }
+  stage("Deployment to Dev"){
+       build job: 'DeploymentPipeline', parameters: [
+       [$class: 'StringParameterValue', name: 'DEPLOYMENT_ENV', value: 'dev']]
+  }
+  stage("Testing on Dev"){
+         build job: 'TestPipeline', parameters: [
+         [$class: 'StringParameterValue', name: 'DEPLOYMENT_ENV', value: 'dev']]
+  }
+    stage("Deployment on Prod"){
+        echo 'Dummy step'
+  }
+  stage("Smoke test on Prod"){
+           build job: 'Test/smoke-ui-tests', parameters: [
+                              [$class: 'StringParameterValue', name: 'DEPLOYMENT_ENV', value: 'prod']]
+                              sh "uname"
+    }
+
+}catch(Exception e){
+    println e
+    currentBuild.result = "FAILURE"   
+}
+ stage("Send logs to ELK"){
+       currentBuild.result = 'SUCCESS'
+        logstashSend failBuild: true, maxLines: 1000
+}
+
+if (currentBuild.result == "FAILURE"){
+
+//send email only when fails 
+ emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
+                  recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
+                  subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
+                  to: "ricardo.santos@accesa.eu, adrian.moldovan@accesa.eu"
+//send failure logs to elk 
+println "sending logs to elk "
+logstashSend failBuild: true, maxLines: 1000
+}
+}

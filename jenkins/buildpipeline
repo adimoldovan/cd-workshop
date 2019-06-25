@@ -1,0 +1,38 @@
+node("build_server"){  
+try{
+  stage("Build application"){
+      build job: 'Build/Build App Client and Server'
+      sh 'ls'  
+   }
+   stage("Send build logs to ELK"){
+       currentBuild.result = 'SUCCESS'
+        logstashSend failBuild: true, maxLines: 1000
+   }
+   stage("Push images"){
+       //tag before push
+       sh 'docker tag buildappclientandserver_app-client qsitJenkinsALB-1531543100.eu-central-1.elb.amazonaws.com:5000/buildappclientandserver_app-client'
+       sh 'docker tag buildappclientandserver_app-server qsitJenkinsALB-1531543100.eu-central-1.elb.amazonaws.com:5000/buildappclientandserver_app-server'
+       sh 'docker tag mysql:5.7 qsitJenkinsALB-1531543100.eu-central-1.elb.amazonaws.com:5000/mysql:5.7'
+       //push to registry
+       sh 'docker push qsitJenkinsALB-1531543100.eu-central-1.elb.amazonaws.com:5000/buildappclientandserver_app-client'
+       sh 'docker push qsitJenkinsALB-1531543100.eu-central-1.elb.amazonaws.com:5000/buildappclientandserver_app-server'
+       sh 'docker push qsitJenkinsALB-1531543100.eu-central-1.elb.amazonaws.com:5000/mysql:5.7'
+   }
+   
+}catch(Exception e){
+    println e
+    currentBuild.result = "FAILURE"
+}
+
+if (currentBuild.result == "FAILURE"){
+
+//send email only when fails 
+ emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
+                  recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
+                  subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}" ,
+                  to: "ricardo.santos@accesa.eu, adrian.moldovan@accesa.eu"
+//send failure logs to elk 
+println "sending logs to elk "
+logstashSend failBuild: true, maxLines: 1000
+}
+}

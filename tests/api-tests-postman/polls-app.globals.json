@@ -1,0 +1,48 @@
+{
+	"id": "552c5c32-a309-4da5-8a09-1b718442ba7a",
+	"values": [
+		{
+			"key": "email",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "name",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "username",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "default_email",
+			"value": "s.squirrel@mailinator.com",
+			"description": "",
+			"enabled": true
+		},
+		{
+			"key": "default_name",
+			"value": "Sneaky Squirrel",
+			"description": "",
+			"enabled": true
+		},
+		{
+			"key": "default_username",
+			"value": "s.squirrel",
+			"description": "",
+			"enabled": true
+		},
+		{
+			"key": "default_password",
+			"value": "test1234",
+			"description": "",
+			"enabled": true
+		}
+	],
+	"name": "polls-app Globals",
+	"_postman_variable_scope": "globals",
+	"_postman_exported_at": "2019-05-27T10:53:15.770Z",
+	"_postman_exported_using": "Postman/6.7.4"
+}

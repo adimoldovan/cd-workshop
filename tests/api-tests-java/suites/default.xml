@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Polls app suite" verbose="1">
+    <test name="All tests">
+        <classes>
+            <class name="eu.accesa.tau.port.polls_app.tests.SignUpTest"/>
+        </classes>
+    </test>
+</suite>

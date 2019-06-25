@@ -1,0 +1,626 @@
+{
+	"info": {
+		"_postman_id": "953b0ba5-077a-42f3-b6fb-a4a9b13d7fd0",
+		"name": "polls-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "signup",
+			"item": [
+				{
+					"name": "signup-valid",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "022189da-c94b-4b97-a1be-b97e66f0f32e",
+								"exec": [
+									"var rnd = Math.floor((Math.random() * 10000) + 1);",
+									"let name = \"Squirrel the \" + rnd + \"th\";",
+									"let username = \"s.\" + rnd;",
+									"let email = username + \"@mailinator.com\";",
+									"",
+									"pm.globals.set(\"email\", email);",
+									"pm.globals.set(\"name\", name);",
+									"pm.globals.set(\"username\", username);",
+									"",
+									"console.log(pm.globals.get(\"username\"));",
+									"console.log(pm.globals.get(\"name\"));",
+									"console.log(pm.globals.get(\"email\"));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "c6896bac-c5a6-412e-8aae-a72165a7b62b",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"pm.test(\"Check response body\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    console.log(jsonData)",
+									"    pm.expect(jsonData.success).to.eql(true);",
+									"    pm.expect(jsonData.message).to.eql(\"User registered successfully\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{name}}\",\n    \"email\": \"{{email}}\",\n    \"username\": \"{{username}}\",\n    \"password\": \"test1234\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/signup",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signup-short-name",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "022189da-c94b-4b97-a1be-b97e66f0f32e",
+								"exec": [
+									"var rnd = Math.floor((Math.random() * 10000) + 1);",
+									"let name = \"Squirrel the \" + rnd + \"th\";",
+									"let username = \"s.\" + rnd;",
+									"let email = username + \"@mailinator.com\";",
+									"",
+									"pm.globals.set(\"email\", email);",
+									"pm.globals.set(\"name\", \"abc\");",
+									"pm.globals.set(\"username\", username);",
+									"",
+									"console.log(pm.globals.get(\"username\"));",
+									"console.log(pm.globals.get(\"name\"));",
+									"console.log(pm.globals.get(\"email\"));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "c6896bac-c5a6-412e-8aae-a72165a7b62b",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"size must be between 4 and 40\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{name}}\",\n    \"email\": \"{{email}}\",\n    \"username\": \"{{username}}\",\n    \"password\": \"start123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/signup",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signup-short-username",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "022189da-c94b-4b97-a1be-b97e66f0f32e",
+								"exec": [
+									"var rnd = Math.floor((Math.random() * 10000) + 1);",
+									"let name = \"Squirrel the \" + rnd + \"th\";",
+									"let username = \"s.\" + rnd;",
+									"let email = username + \"@mailinator.com\";",
+									"",
+									"pm.globals.set(\"email\", email);",
+									"pm.globals.set(\"name\", name);",
+									"pm.globals.set(\"username\", \"ab\");",
+									"",
+									"console.log(pm.globals.get(\"username\"));",
+									"console.log(pm.globals.get(\"name\"));",
+									"console.log(pm.globals.get(\"email\"));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "c6896bac-c5a6-412e-8aae-a72165a7b62b",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"size must be between 3 and 15\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{name}}\",\n    \"email\": \"{{email}}\",\n    \"username\": \"{{username}}\",\n    \"password\": \"start123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/signup",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signup-existing-email",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "022189da-c94b-4b97-a1be-b97e66f0f32e",
+								"exec": [
+									"var rnd = Math.floor((Math.random() * 10000) + 1);",
+									"let name = \"Squirrel the \" + rnd + \"th\";",
+									"let username = \"s.\" + rnd;",
+									"",
+									"pm.globals.set(\"email\", pm.globals.get(\"default_email\"));",
+									"pm.globals.set(\"name\", name);",
+									"pm.globals.set(\"username\", username);",
+									"",
+									"console.log(pm.globals.get(\"username\"));",
+									"console.log(pm.globals.get(\"name\"));",
+									"console.log(pm.globals.get(\"email\"));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "c6896bac-c5a6-412e-8aae-a72165a7b62b",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"pm.test(\"Check response body\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    console.log(jsonData)",
+									"    pm.expect(jsonData.success).to.eql(false);",
+									"    pm.expect(jsonData.message).to.eql(\"Email Address already in use!\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{name}}\",\n    \"email\": \"{{email}}\",\n    \"username\": \"{{username}}\",\n    \"password\": \"start123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/signup",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "signup-existing-username",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "022189da-c94b-4b97-a1be-b97e66f0f32e",
+								"exec": [
+									"var rnd = Math.floor((Math.random() * 10000) + 1);",
+									"let name = \"Squirrel the \" + rnd + \"th\";",
+									"let username = \"s.\" + rnd;",
+									"let email = username + \"@mailinator.com\";",
+									"",
+									"pm.globals.set(\"email\", email);",
+									"pm.globals.set(\"name\", name);",
+									"pm.globals.set(\"username\", pm.globals.get(\"default_username\"));",
+									"",
+									"console.log(pm.globals.get(\"username\"));",
+									"console.log(pm.globals.get(\"name\"));",
+									"console.log(pm.globals.get(\"email\"));",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "c6896bac-c5a6-412e-8aae-a72165a7b62b",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});",
+									"pm.test(\"Check response body\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    console.log(jsonData)",
+									"    pm.expect(jsonData.success).to.eql(false);",
+									"    pm.expect(jsonData.message).to.eql(\"Username is already taken!\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"{{name}}\",\n    \"email\": \"{{email}}\",\n    \"username\": \"{{username}}\",\n    \"password\": \"start123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/signup",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "signin",
+			"item": [
+				{
+					"name": "signin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8e842f78-a55b-40df-abef-186127832680",
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200,201,202]);",
+									"});",
+									"pm.test(\"Body matches string\", function () {",
+									"    pm.expect(pm.response.text()).to.include(\"accessToken\");",
+									"});",
+									"pm.environment.set(\"token\", pm.response.json().accessToken);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"usernameOrEmail\": \"s.squirrel@mailinator.com\",\n    \"password\": \"test1234\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/auth/signin",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "poll",
+			"item": [
+				{
+					"name": "get-all-polls",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/polls",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"polls"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-poll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/polls/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"polls",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post-poll-vote",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTU4MDAzODgxLCJleHAiOjE1NTg2MDg2ODF9.nCtDXFyfwRqAOEUHB1RtItOZiWeWDbgizll6-4gWc5NIZ2TMHlwuIzFMrC9t8VESGKfEbQ5yq6cmz7cfFWRcFQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"pollId\": 2,\n    \"choiceId\": 3\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/polls/2/votes",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"polls",
+								"2",
+								"votes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "get-my-profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNTU4MDAzNDc4LCJleHAiOjE1NTg2MDgyNzh9.DBRbVC7Qf0A7V2c0GD29k7VMrcgqf9E_QNvzZJ4v4HMfdZSs6lTqBQSrv9z2dXJ-DqgpN3r2-opGCQkO_Cdgrg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/user/me",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-user-profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/user/s.squirrel",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"s.squirrel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "checkUsernameAvailability",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/user/checkUsernameAvailability?username=s.squirrel",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"checkUsernameAvailability"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "s.squirrel"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "checkEmailAvailability",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{base_url}}/user/checkEmailAvailability?email=s.squirrel@mailinator.com",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"user",
+								"checkEmailAvailability"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "s.squirrel@mailinator.com"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
