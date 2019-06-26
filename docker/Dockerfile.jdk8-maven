@@ -1,0 +1,16 @@
+FROM ubuntu:latest
+
+RUN apt-get update && \
+    apt-get -qy full-upgrade && \
+    apt-get install -qy git && \
+    apt-get install -qy openssh-server && \
+    sed -i 's|session    required     pam_loginuid.so|session    optional     pam_loginuid.so|g' /etc/pam.d/sshd && \
+    mkdir -p /var/run/sshd && \
+    apt-get install -qy openjdk-8-jdk && \
+    apt-get install -qy maven && \
+    apt-get -qy autoremove
+
+# Standard SSH port
+EXPOSE 22
+
+CMD ["/usr/sbin/sshd", "-D"]

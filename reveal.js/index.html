@@ -42,8 +42,10 @@
 					src="images/accesa_logo_registered_big_white_slogan.png" />
 				<div data-markdown>
 					<textarea data-template>
-					## Testing in Continuous Delivery
-					#### Adrian Moldovan
+
+					### Testing in Continuous Delivery
+
+					##### Adrian Moldovan
 				</textarea>
 				</div>
 			</section>
@@ -61,18 +63,16 @@
 				<p class="fragment"><span class="highlight">Dev</span> (Development) + <span
 					class="highlight">Ops</span> (Operations)</p>
 				<p class="fragment">A <span class="highlight">culture</span> of collaboration between dev and ops</p>
-				</textarea>
-			</section>
-			<section data-markdown>
-				<textarea data-template>
-				### What DevOps is not
-				<p class="fragment">A job title</p>
-				<p class="fragment">A tool</p>
+				<aside class="notes">
+						<ul>
+							<li>not a job title</li>
+						</ul>
+					</aside>	
 				</textarea>
 			</section>
 			<section>
 				<section>
-					<h3>Brief history</h3>
+					<h3>History</h3>
 				</section>
 				<section>
 					<img src="images/waterfall.svg" />
@@ -89,7 +89,14 @@
 					<img src="images/waterfall-agile.svg" />
 					<aside class="notes">
 						<ul>
-							<li>Short cycles</li>
+							<li>Small, frequent cycles</li>
+							<li>Deliver fast</li>
+							<li>Quickly respond to changes</li>
+							<li>2007 - Agile was popular, but still suffered because of Dev and Ops gap</li>
+							<li>June 2009 - Velocity Conference: "10+ deploys Per Day: Dev and Ops Cooperation at
+								Flickr"</li>
+							<li>Conversation started on Twitter #devops</li>
+							<li>Oct 2009 - DevOpsDays in Belgium</li>
 						</ul>
 					</aside>
 				</section>
@@ -97,7 +104,8 @@
 					<img src="images/waterfall-agile-devops.svg" />
 					<aside class="notes">
 						<ul>
-							<li>Short cycles</li>
+							<li>Since 2009 DevOps became mainstream</li>
+							<li>Spwaned a variety of tools</li>
 						</ul>
 					</aside>
 				</section>
@@ -121,21 +129,23 @@
 						- Fast time to market <!-- .element: class="fragment" data-fragment-index="3" -->
 						- Few production failures <!-- .element: class="fragment" data-fragment-index="4" -->
 						- Immediate recovery <!-- .element: class="fragment" data-fragment-index="5" -->
-						</textarea>
+				</textarea>
 			</section>
 			<section>
 				<section data-markdown>
 					<textarea data-template>
-							### DevOps practices
+						## DevOps practices
 					</textarea>
 				</section>
 				<section data-markdown>
 					<textarea data-template>
 						### Build automation
 
-						- Fast <!-- .element: class="fragment" data-fragment-index="1" -->
-						- Consistent <!-- .element: class="fragment" data-fragment-index="1" -->
-						- Repeatable <!-- .element: class="fragment" data-fragment-index="1" -->
+						Fast <!-- .element: class="fragment" data-fragment-index="1" -->
+						
+						Consistent <!-- .element: class="fragment" data-fragment-index="1" -->
+						
+						Repeatable <!-- .element: class="fragment" data-fragment-index="1" -->
 					</textarea>
 				</section>
 				<section data-markdown>
@@ -159,21 +169,84 @@
 						Every code change is <span class="highlight">deployed</span> to production
 					</textarea>
 				</section>
-				<section data-background-color="#fff">
-					<img class="plain" src="images/ci-cd-cd.png" />
-				</section>
-			</section>
-			<section>
-				<section data-markdown>
+				<section data-background-color="#fff" data-markdown>
 					<textarea data-template>
-						### DevOps tools
+						![ci-cd](images/ci-cd-cd.png)
+						<small>https://www.atlassian.com/continuous-delivery/principles/continuous-integration-vs-delivery-vs-deployment</small>
 					</textarea>
 				</section>
 			</section>
 			<section>
 				<section data-markdown>
 					<textarea data-template>
-						### Testing in DevOps culture
+						## DevOps tools
+					</textarea>
+				</section>
+				<section data-markdown data-background-color="#fff">
+					![tools table](images/periodic_table.png)
+					<small>https://xebialabs.com/periodic-table-of-devops-tools</small>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						### Continuous integration
+
+						Jenkins
+							
+						Travis CI
+
+						Bamboo
+
+						Team City
+						<aside class="notes">
+							<p>- Server integrated with source control</p>
+							<p>- CI tool will trigger build on code changes</p>	
+						</aside>
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						### Configuration management
+	
+						Ansible
+								
+						Puppet
+	
+						Chef
+
+						<aside class="notes">
+
+						</aside>
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						### Containerization
+		
+						Docker
+	
+						<aside class="notes">
+
+						</aside>
+					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+						### Monitoring
+			
+						ELK Stack (Elastic search, Logstash, Kibana)
+		
+						<aside class="notes">
+							<p>
+							Elasticsearch is a search and analytics engine. Logstash is a server‑side data processing pipeline that ingests data from multiple sources simultaneously, transforms it, and then sends it to a "stash" like Elasticsearch. Kibana lets users visualize data with charts and graphs in Elasticsearch.
+							</p>
+						</aside>
+					</textarea>
+				</section>
+			</section>
+			<section>
+				<section data-markdown>
+					<textarea data-template>
+						## Testing in DevOps culture
 					</textarea>
 				</section>
 				<section data-markdown>
@@ -207,21 +280,22 @@
 				</section>
 				<section data-markdown>
 					<textarea data-template>
-							1 min <!-- .element: style="font-size: 264px;" -->
+						1 min <!-- .element: style="font-size: 264px;" -->
 	
-							execution time for you longest test
-						</textarea>
+						execution time for you longest test
+					</textarea>
 				</section>
 				<section data-markdown>
 					<textarea data-template>
 						Build atomic tests
-
-						<aside class="notes" data-markdown>
-							- take care of app state before test
-							- Use API
-							- Use DB
-							- Use cookies
-							- Use JavaScript
+						<aside class="notes">
+							<ul>
+								<li>take care of app state before test</li>
+								<li>Use API</li>
+								<li>Use DB</li>
+								<li>Use cookies</li>
+								<li>Use JavaScript</li>
+							</ul>
 						</aside>
 					</textarea>
 				</section>
@@ -237,14 +311,18 @@
 				</section>
 				<section data-markdown>
 					<textarea data-template>
-							### Test types
+						### Test types
 
-							- unit <!-- .element: class="fragment" data-fragment-index="1" -->
-							- integration <!-- .element: class="fragment" data-fragment-index="2" -->
-							- functional <!-- .element: class="fragment" data-fragment-index="3" -->
-							- performance <!-- .element: class="fragment" data-fragment-index="4" -->
-							- security <!-- .element: class="fragment" data-fragment-index="5" -->
-						</textarea>
+						unit <!-- .element: class="fragment" data-fragment-index="1" -->
+
+						integration <!-- .element: class="fragment" data-fragment-index="2" -->
+
+						functional <!-- .element: class="fragment" data-fragment-index="3" -->
+
+						performance <!-- .element: class="fragment" data-fragment-index="4" -->
+						
+						security <!-- .element: class="fragment" data-fragment-index="5" -->
+					</textarea>
 				</section>
 			</section>
 			<section>
@@ -292,39 +370,57 @@
 					<textarea data-template>
 						Lead time
 			
-						(time from requirement to done)
+						<small>time from requirement to done</small>
 					</textarea>
 				</section>
 				<section data-markdown>
 					<textarea data-template>
 						Cycle time 
 												
-						(time from commit to production)
+						<small>time from commit to production</small>
 					</textarea>
 				</section>
 				<section data-markdown>
 					<textarea data-template>
-												Failure rate 
+						Failure rate 
 												
-												(% of changes that produce a failure)
-											</textarea>
+						<small>% of changes that produce a failure</small>
+					</textarea>
 				</section>
 				<section data-markdown>
 					<textarea data-template>
-												Mean time to recover (MTTR)
+						Mean time to recover (MTTR)
 												
-												(how long to fix a build)
-								</textarea>
+						<small>how long to fix a build</small>
+					</textarea>
 				</section>
-
+			</section>
+			<section data-markdown>
+				### DEMO
 			</section>
 			<section>
 				<section data-markdown>
 					<textarea data-template>
 						### References
 
+						Continuous Testing for DevOps Professionals 
 						
+						<small>by Eran Kinsbruner</small>
+						
+						A Practical guide to testing in DevOps 
+						
+						<small>by Katrina Clokie</small>
 					</textarea>
+				</section>
+				<section data-markdown>
+					<textarea data-template>
+							### References
+							
+							https://testingindevops.org
+
+							https://linuxacademy.com
+							
+						</textarea>
 				</section>
 				<section data-markdown>
 					<textarea data-template>
@@ -361,16 +457,16 @@
 			slideNumber: 'c/t',
 			showSlideNumber: 'speaker',
 
-			// // Add the current slide number to the URL hash so that reloading the
-			// // page/copying the URL will return you to the same slide
-			// hash: false,
-			//
-			// // Push each slide change to the browser history. Implies `hash: true`
-			// history: false,
-			//
-			// // Enable keyboard shortcuts for navigation
-			// keyboard: true,
-			//
+			// Add the current slide number to the URL hash so that reloading the
+			// page/copying the URL will return you to the same slide
+			hash: true,
+
+			// Push each slide change to the browser history. Implies `hash: true`
+			history: true,
+
+			// Enable keyboard shortcuts for navigation
+			keyboard: true,
+
 			// Enable the slide overview mode
 			overview: true,
 			//
@@ -391,25 +487,25 @@
 			//
 			// // Randomizes the order of slides each time the presentation loads
 			// shuffle: false,
-			//
+
 			// // Turns fragments on and off globally
 			// fragments: true,
-			//
+
 			// // Flags whether to include the current fragment in the URL,
 			// // so that reloading brings you to the same fragment position
 			// fragmentInURL: false,
-			//
+
 			// // Flags if the presentation is running in an embedded mode,
 			// // i.e. contained within a limited portion of the screen
 			// embedded: false,
-			//
-			// // Flags if we should show a help overlay when the questionmark
-			// // key is pressed
-			// help: true,
-			//
-			// // Flags if speaker notes should be visible to all viewers
-			// showNotes: false,
-			//
+
+			// Flags if we should show a help overlay when the questionmark
+			// key is pressed
+			help: true,
+
+			// Flags if speaker notes should be visible to all viewers
+			showNotes: true,
+
 			// // Global override for autoplaying embedded media (video/audio/iframe)
 			// // - null: Media will only autoplay if data-autoplay is present
 			// // - true: All media will autoplay, regardless of individual setting
@@ -438,50 +534,50 @@
 			// presenting each slide. This is used to show a pacing timer in the
 			// speaker view
 			defaultTiming: 120,
-			//
-			// // Enable slide navigation via mouse wheel
-			// mouseWheel: false,
-			//
+
+			// Enable slide navigation via mouse wheel
+			mouseWheel: false,
+
 			// Hide cursor if inactive
 			hideInactiveCursor: true,
-			//
-			// // Time before the cursor is hidden (in ms)
-			// hideCursorTime: 5000,
-			//
-			// // Hides the address bar on mobile devices
-			// hideAddressBar: true,
-			//
-			// // Opens links in an iframe preview overlay
-			// // Add `data-preview-link` and `data-preview-link="false"` to customise each link
-			// // individually
-			// previewLinks: false,
-			//
+
+			// Time before the cursor is hidden (in ms)
+			hideCursorTime: 5000,
+
+			// Hides the address bar on mobile devices
+			hideAddressBar: true,
+
+			// Opens links in an iframe preview overlay
+			// Add `data-preview-link` and `data-preview-link="false"` to customise each link
+			// individually
+			previewLinks: false,
+
 			// Transition style
 			transition: 'convex', // none/fade/slide/convex/concave/zoom
-			//
-			// // Transition speed
-			// transitionSpeed: 'default', // default/fast/slow
-			//
-			// // Transition style for full page slide backgrounds
-			// backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
-			//
+
+			// Transition speed
+			transitionSpeed: 'slow', // default/fast/slow
+
+			// Transition style for full page slide backgrounds
+			backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+
 			// Number of slides away from the current that are visible
 			viewDistance: 3,
-			//
-			// // Parallax background image
-			// parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
-			//
-			// // Parallax background size
-			// parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
-			//
-			// // Number of pixels to move the parallax background per slide
-			// // - Calculated automatically unless specified
-			// // - Set to 0 to disable movement along an axis
-			// parallaxBackgroundHorizontal: null,
-			// parallaxBackgroundVertical: null,
-			//
-			// // The display mode that will be used to show slides
-			// display: 'block'
+
+			// Parallax background image
+			parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+
+			// Parallax background size
+			parallaxBackgroundSize: '', // CSS syntax, e.g. "2100px 900px"
+
+			// Number of pixels to move the parallax background per slide
+			// - Calculated automatically unless specified
+			// - Set to 0 to disable movement along an axis
+			parallaxBackgroundHorizontal: null,
+			parallaxBackgroundVertical: null,
+
+			// The display mode that will be used to show slides
+			display: 'block',
 
 			dependencies: [{
 					src: 'plugin/markdown/marked.js'
