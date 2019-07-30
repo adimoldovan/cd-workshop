@@ -24,6 +24,8 @@ const request = (options) => {
 };
 
 export function getAllPolls(page, size) {
+    console.log('REACT_APP_SERVER_URL: '+process.env.REACT_APP_SERVER_URL)
+    console.log('API_BASE_URL: ' + API_BASE_URL)
     page = page || 0;
     size = size || POLL_LIST_SIZE;
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 cd ..
 cd app/polling-app-server
 mvn clean package -DskipTests=true

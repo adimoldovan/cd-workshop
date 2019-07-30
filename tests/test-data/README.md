@@ -1,1 +1,0 @@
-# polls-app-test-data

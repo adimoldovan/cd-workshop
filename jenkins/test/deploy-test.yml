@@ -1,0 +1,54 @@
+# Docker Compose file Reference (https://docs.docker.com/compose/compose-file/)
+
+version: '3.3'
+
+services:
+  app-server:
+    container_name: polls-app-server-test
+    image: 10.115.8.91:5000/polls-app-server-test
+    ports:
+      - "8980:8080"
+    restart: always
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://polls-app-db-test:3306/polls?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false
+      SPRING_DATASOURCE_USERNAME: callicoder
+      SPRING_DATASOURCE_PASSWORD: callicoder
+    networks:
+      - polls-backend-test
+      - polls-frontent-test
+
+  app-client:
+    container_name: polls-app-client-test
+    image: 10.115.8.91:5000/polls-app-client-test
+    ports:
+      - "9090:80"
+    restart: always
+    depends_on:
+      - app-server
+    networks:
+      - polls-frontent-test
+
+  db:
+    image: mysql:5.7
+    container_name: polls-app-db-test
+    ports:
+      - "33070:3306"
+    restart: always
+    environment:
+      MYSQL_DATABASE: polls
+      MYSQL_USER: callicoder
+      MYSQL_PASSWORD: callicoder
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - db-data-test:/var/lib/mysql
+    networks:
+      - polls-backend-test
+
+volumes:
+  db-data-test:
+
+networks:
+  polls-backend-test:
+  polls-frontent-test:

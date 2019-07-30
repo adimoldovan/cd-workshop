@@ -25,7 +25,7 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 before(function () {
-    cy.fixture('config.dev.json').then((conf) => {
+    cy.fixture('config.test.json').then((conf) => {
         Cypress.config().baseUrl = conf.appUrl;
         cy.log(Cypress.config().baseUrl);
     });

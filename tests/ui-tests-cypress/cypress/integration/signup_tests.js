@@ -6,7 +6,7 @@ const DEFAULT_USERNAME = 'some.username';
 const DEFAULT_EMAIL = DEFAULT_USERNAME + '@mailinator.com';
 
 describe('Sign up tests', function () {
-    it.skip('Sign up with existing username', function () {
+    it('Sign up with existing username', function () {
         cy.fixture('auth.json').then((user) => {
             cy.visit(url);
             cy.get('[name="name"]').type(DEFAULT_NAME).should('have.value', DEFAULT_NAME);
@@ -19,7 +19,7 @@ describe('Sign up tests', function () {
         });
     });
 
-    it.skip('Sign up with existing email', function () {
+    it('Sign up with existing email', function () {
         cy.fixture('auth.json').then((user) => {
             cy.visit(url);
             cy.get('[name="name"]').type(DEFAULT_NAME).should('have.value', DEFAULT_NAME);
